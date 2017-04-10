@@ -5,16 +5,88 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>textarea换行bug</title>
 <script src="js/jquery.min.js"></script>
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+		font-family: '微软雅黑';
+		font-size: 16px;
+	}
+	.testBox{
+		clear: both;
+		padding: 30px;
+		background: #ffc0c0;
+	}
+	.database{
+		float: left;
+		width: 240px;
+		height: 440px;
+		padding: 30px;
+		background: #f2f2f2;
+		border: 1px solid #eee;
+	}
+	.buttonBox{
+		float: left;
+		margin: 200px 20px;
+	}
+	.buttonBox button{
+		display: block;
+		width: 100px;
+		height: 30px;
+		margin: 30px;
+	}
+	textarea{
+		float: left;
+		width: 240px;
+		height: 440px;
+		padding: 30px;
+		margin: 0;
+	}
+</style>
 </head>
 <body>
-<h3>数据库</h3>
-<div class="database">
+<div style="margin: 30px 0 0 100px;">
+	<h3>数据库</h3>
+	<div class="database">测试数据01<br>测试数据02<br>测试数据03<br>测试数据04
+	</div>
+
+	<div class="buttonBox">
+		<button id="right">--》</button>
+		<button id="left">《--</button>
+	</div>
+
+	<textarea name="" id="textarea" cols="30" rows="10"></textarea>
 </div>
 
-<br>
-<br>
-<br>
+<div class="testBox">
+	*********** 注意：关键点就是对 "换行" 进行转换. ************
+</div>
 
-<textarea name="" id="textarea" cols="30" rows="10"></textarea>
+<script>
+	$(function(){
+		$("#right").click(function(event) {
+			var $t = $("#textarea"),
+				$d = $(".database"),
+				databaseVal = $d.html();   //数据库数据
+
+        	var reg = new RegExp("<br>","g");          //创建正则RegExp对象*****************
+        	var newVal= databaseVal.replace(reg,"\n");  //要放入textarea的新文字****************
+
+        	$t.val(newVal);
+			$d.html('');
+		});
+
+		$("#left").click(function(event) {
+			var $t = $("#textarea"),
+				$d = $(".database"),
+				textareaVal = $t.val();     //textarea数据
+
+        	var newVal= textareaVal.replace(/\n|\r\n/g,"<br>");  //要放入数据库的新文字***************
+
+        	$d.html(newVal);
+        	$t.val('');
+		});
+	})
+</script>
 </body>
 </html>
