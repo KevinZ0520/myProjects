@@ -1,0 +1,24 @@
+
+var clickTime = 0; //设一个全局变量
+
+$(".xxx").click(function() {
+
+	//判断计时器是否处于关闭状态
+	if (clickTime == 0) {
+		clickTime = 2; //设定间隔时间（秒）
+		//启动计时器，倒计时clickTime秒后自动关闭计时器。
+		//目的时为了在快速点击时，在2秒内只触发一次click事件
+		var index = setInterval(function() {
+			clickTime--;
+			if (clickTime == 0) {
+				clearInterval(index);
+			}
+		}, 1000);
+		console.log("触发第一次！");
+
+		function XXX(){}; //你的方法
+	} else {
+		console.log("2秒之内不能触发了哦！");
+	}
+	
+});
