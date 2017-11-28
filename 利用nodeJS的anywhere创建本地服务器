@@ -1,0 +1,10 @@
+1、首先，你需要安装了nodeJS；
+   node -v   查看是否安装成功
+    
+2、装好后输入 npm install anywhere -g来安装anywhere。
+   注意如果是mac系统会提示你权限不够，需要在代码前加上 sudo获取管理员权限。即sudo npm install anywhere -g。
+   
+3、命令行进入项目的根目录，输入  anywhere  ；
+
+
+OVER！很简单的！
